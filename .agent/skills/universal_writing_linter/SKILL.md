@@ -86,6 +86,18 @@ python ".agent\skills\spec_linter\scripts\lint_spec.py" <檔案路徑>
 
 ---
 
+## 防呆守則：IDE 災情廣播系統回饋 (IDE Error Checking)
+身為一個專業的 Agent，當修改任何 `.ts`, `.tsx`, `.js`, 或其他具備 Language Server 支援的程式碼檔案後，**絕對禁止**在未確認錯誤之前就宣布任務完成！
+
+- **強制要求**: 在每次修改檔案並準備回復使用者前，你 **必須** 注意 IDE 攔截到的回饋 (例如 TypeScript compiler 錯誤、Lint 錯誤)。
+- **觸發**: 檔案名稱會因為語法錯誤或型別錯誤變成「紅色」，或者在程式碼底部會出現「紅線 (Red Squiggly Lines)」。
+- **動作**: 如果你在修改程式碼的過程中或寫作完成後，收到系統提示有 Error Severity 的 IDE lints 或 Compile Errors：
+    1. 你 **必須** 把修復這些紅字型別/語法錯誤視為當前最高優先級任務。
+    2. 你 **必須** 主動呼叫工具修正這些錯誤，直到紅字消失為止。
+    3. **嚴禁** 假裝沒看到錯誤就呼叫 `notify_user`。
+
+---
+
 ## 撰寫範例
 
 ### 處理示範
